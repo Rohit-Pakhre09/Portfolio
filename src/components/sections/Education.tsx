@@ -65,8 +65,8 @@ function EducationSection() {
             >
               <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_17rem] sm:items-start sm:gap-6">
                 <div className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-500/10 text-emerald-300">
-                    <FaGraduationCap className="h-4 w-4" />
+                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-500/10 text-emerald-300">
+                    <FaGraduationCap className="h-4 w-4 shrink-0" />
                   </span>
                   <div>
                     <h3 className="text-base font-semibold text-white sm:text-lg">
