@@ -15,7 +15,7 @@ const educationData: EducationItem[] = [
     degree: "Bachelor of Science in Information Technology (BSc. IT)",
     institution: "Vidhyadeep University",
     location: "Anita (Kim), Olpad Highway, Surat, Gujarat, India",
-    period: "2023 - Present",
+    period: "2024 - Present",
     note: "Currently pursuing BSc IT with focus on computer science fundamentals, software development, and web technologies.",
   },
   {
