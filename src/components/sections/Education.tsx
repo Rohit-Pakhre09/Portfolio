@@ -22,14 +22,14 @@ const educationData: EducationItem[] = [
     degree: "Higher Secondary (12th)",
     institution: "Shree Gurukrupa Vidhya Sankul",
     location: "Udhana, Surat, Gujarat, India",
-    period: "Completed",
+    period: "2024 - Completed",
     note: "Completed Higher Secondary education in Commerce stream, developing strong foundations in mathematics, business studies, logical reasoning, and analytical thinking.",
   },
   {
     degree: "Secondary School (10th)",
     institution: "Jeevan Vikas High School",
     location: "Udhana, Surat, Gujarat, India",
-    period: "Completed",
+    period: "2022 - Completed",
     note: "Early academic base that shaped discipline and problem-solving habits.",
   },
 ];
