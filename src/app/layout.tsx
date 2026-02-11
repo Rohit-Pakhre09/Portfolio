@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     "The official portfolio of Rohit Pakhre, a MERN stack developer.",
   authors: [{ name: "Rohit Pakhre" }],
   keywords: ["MERN", "React", "Node.js", "MongoDB", "Express", "Portfolio"],
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
