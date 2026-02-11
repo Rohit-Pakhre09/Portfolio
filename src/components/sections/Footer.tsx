@@ -82,7 +82,7 @@ function Footer() {
 
           <div className="flex justify-center space-x-4 md:justify-end">
             <a
-              href="https://github.com/rohit-pakhre"
+              href="https://github.com/Rohit-Pakhre09"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
