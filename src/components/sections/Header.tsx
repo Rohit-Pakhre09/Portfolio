@@ -2,9 +2,9 @@
 import React from "react";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Navbar from "./Navbar";
-import { FaCode } from "react-icons/fa";
 
 function Header() {
   return (
@@ -24,9 +24,14 @@ function Header() {
           duration={500}
           className="flex cursor-pointer items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 transition-colors hover:border-emerald-300/40 sm:gap-2 sm:px-3"
         >
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-black sm:h-8 sm:w-8">
-            <FaCode className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-          </span>
+          <Image
+            src="/favicon.svg"
+            alt="Rohit Pakhre logo"
+            width={32}
+            height={32}
+            className="h-7 w-7 rounded-md sm:h-8 sm:w-8"
+            priority
+          />
           <span className="text-xs font-semibold tracking-wide text-white sm:text-base">
             Rohit <span className="hidden sm:inline">Pakhre</span>
           </span>
