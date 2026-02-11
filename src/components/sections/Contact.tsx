@@ -167,7 +167,7 @@ function ContactSection() {
                 </div>
                 <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/3 px-4 py-3">
                   <FaMapMarkerAlt className="h-4 w-4 text-emerald-300" />
-                  <span className="text-sm text-neutral-200">India</span>
+                  <span className="text-sm text-neutral-200">Surat - Gujarat, India</span>
                 </div>
                 <div className="rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-xs text-emerald-200">
                   Available for remote & onsite roles, Also long-term product engagements.
