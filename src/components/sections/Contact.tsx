@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import DigitalGlobe from "../ui/DigitalGlobe";
@@ -25,6 +25,17 @@ function ContactSection() {
     "idle" | "success" | "error"
   >("idle");
   const [submissionMessage, setSubmissionMessage] = useState("");
+
+  useEffect(() => {
+    if (submissionStatus !== "success") return;
+
+    const timeoutId = setTimeout(() => {
+      setSubmissionStatus("idle");
+      setSubmissionMessage("");
+    }, 4000);
+
+    return () => clearTimeout(timeoutId);
+  }, [submissionStatus]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
