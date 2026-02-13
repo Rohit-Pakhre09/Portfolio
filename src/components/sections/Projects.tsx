@@ -27,7 +27,7 @@ const projects: Project[] = [
     description:
       "A sleek real-time chat app enabling instant, smooth, and secure communication",
     sourceLink: "https://github.com/Rohit-Pakhre09/Cipher/",
-    image: "/images/",
+    image: "/images/Cipher.png",
   },
   {
     title: "Work OS - ERP",
