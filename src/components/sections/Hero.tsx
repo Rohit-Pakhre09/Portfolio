@@ -13,18 +13,10 @@ function HeroSection() {
       id="home" // Added ID
       className="relative mx-auto flex min-h-[calc(100vh-3.5rem)] w-full items-center justify-center overflow-hidden px-4 py-14 sm:min-h-[calc(100vh-4rem)] sm:px-6 md:py-20"
     >
-      <div className="pointer-events-none absolute inset-0 opacity-60">
+      <div className="pointer-events-none absolute inset-0 opacity-72">
         <InteractiveParticles
-          quantity={42}
-          particleColor="rgba(16, 185, 129, 0.65)"
-          lineColor="rgba(45, 212, 191, 0.20)"
-          lineDistance={90}
-          mouseInteractionDistance={110}
-          particleMinRadius={0.4}
-          particleMaxRadius={1.6}
-          particleMinSpeed={0.08}
-          particleMaxSpeed={0.35}
-          mouseAttractionForce={0.0012}
+          quantity={160}
+          particleColor="rgba(248, 250, 252, 0.95)"
         />
       </div>
       <Spotlight

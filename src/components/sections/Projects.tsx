@@ -4,40 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaExternalLinkAlt, FaGithub, FaImage } from "react-icons/fa";
 import { PinContainer } from "../ui/3d-pin";
-
-type Project = {
-  title: string;
-  description: string;
-  image: string;
-  liveLink?: string;
-  sourceLink: string;
-};
-
-const projects: Project[] = [
-  {
-    title: "Smart Shelf",
-    description:
-      "A modern and scalable Learning Management System (LMS) built with React, Vite, and pnpm. Designed for performance, modularity, and ease of integration.",
-    liveLink: "https://smart-shelf-desk.vercel.app/",
-    sourceLink: "https://github.com/Rohit-Pakhre09/Smart-Shelf",
-    image: "/images/Smart-Shelf.png",
-  },
-  {
-    title: "Cipher",
-    description:
-      "A sleek real-time chat app enabling instant, smooth, and secure communication",
-    sourceLink: "https://github.com/Rohit-Pakhre09/Cipher/",
-    image: "/images/Cipher.png",
-  },
-  {
-    title: "Work OS - ERP",
-    description:
-      "Work OS ERP is a modern role-based Employee Resource Planning platform for organizations to manage workforce operations in one place.",
-    liveLink: "https://work-os-erp.vercel.app/",
-    sourceLink: "https://github.com/Rohit-Pakhre09/Work-OS-ERP",
-    image: "/images/Work-OS-ERP.png",
-  },
-];
+import { projects, type Project } from "@/lib/projects";
 
 const ITEMS_PER_PAGE = 3;
 
