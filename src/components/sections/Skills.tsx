@@ -79,7 +79,10 @@ const skillGroups: SkillGroup[] = [
 
 function SkillsSection() {
   return (
-    <section id="skills" className="relative z-10 scroll-mt-24 py-16 sm:scroll-mt-28 sm:py-24 md:py-28">
+    <section
+      id="skills"
+      className="relative z-10 touch-pan-y overscroll-y-contain scroll-mt-24 py-16 sm:scroll-mt-28 sm:py-24 md:py-28"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center sm:mb-14">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-300/80">

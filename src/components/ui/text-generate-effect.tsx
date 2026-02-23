@@ -1,6 +1,5 @@
 "use client";
-import { useEffect } from "react";
-import { motion, stagger, useAnimate } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const TextGenerateEffect = ({
@@ -10,29 +9,23 @@ export const TextGenerateEffect = ({
   words: string;
   className?: string;
 }) => {
-  const [scope, animate] = useAnimate();
-  let wordsArray = words.split(" ");
-  useEffect(() => {
-    animate(
-      "span",
-      {
-        opacity: 1,
-      },
-      {
-        duration: 2,
-        delay: stagger(0.2),
-      }
-    );
-  }, [scope.current]);
+  const shouldReduceMotion = useReducedMotion();
+  const wordsArray = words.split(" ");
 
   const renderWords = () => {
     return (
-      <motion.div ref={scope}>
+      <motion.div>
         {wordsArray.map((word, idx) => {
           return (
             <motion.span
               key={word + idx}
-              className="dark:text-white text-black opacity-0"
+              className="text-inherit"
+              initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: shouldReduceMotion ? 0 : 0.4,
+                delay: shouldReduceMotion ? 0 : idx * 0.06,
+              }}
             >
               {word}{" "}
             </motion.span>
@@ -45,7 +38,7 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn("font-bold", className)}>
       <div className="mt-4">
-        <div className=" dark:text-white text-black text-2xl leading-snug tracking-wide">
+        <div className="text-2xl leading-snug tracking-wide text-inherit">
           {renderWords()}
         </div>
       </div>

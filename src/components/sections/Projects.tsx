@@ -89,7 +89,7 @@ function ProjectsSection() {
                 title={formatPinTitle(project)}
                 href={project.liveLink ?? project.sourceLink}
                 containerClassName="h-[30rem] w-full"
-                className="w-[20rem] sm:w-[18rem] xl:w-[20rem]"
+                className="w-[min(92vw,22rem)] sm:w-[18.5rem] md:w-[20rem] lg:w-[21rem] xl:w-[20rem]"
               >
                 <article className="flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-black/40 shadow-lg shadow-black/25 backdrop-blur-sm transition-all duration-200 group-hover/pin:border-emerald-400/40">
                   <div className="relative h-48 w-full bg-black/40 sm:h-52">

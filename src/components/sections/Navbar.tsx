@@ -5,9 +5,9 @@ import { Link } from "react-scroll";
 import {
   FaHome,
   FaUser,
+  FaTools,
   FaFolder,
   FaEnvelope,
-  FaTools,
   FaGraduationCap,
   FaBriefcase,
   FaTrophy,
@@ -31,7 +31,7 @@ function Navbar() {
     typeof window !== "undefined" &&
     window.matchMedia("(min-width: 640px)").matches;
 
-  const primaryNavItems: NavItem[] = [
+  const navItems: NavItem[] = [
     {
       name: "Home",
       link: "home",
@@ -53,18 +53,13 @@ function Navbar() {
       icon: <FaFolder className="h-3.5 w-3.5" />,
     },
     {
-      name: "Resume",
-      link: "resume",
-      icon: <FaFileAlt className="h-3.5 w-3.5" />,
-    },
-    {
       name: "Contact",
       link: "contact",
       icon: <FaEnvelope className="h-3.5 w-3.5" />,
     },
   ];
 
-  const secondaryNavItems: NavItem[] = [
+  const moreNavItems: NavItem[] = [
     {
       name: "Education",
       link: "education",
@@ -79,6 +74,11 @@ function Navbar() {
       name: "Achievements",
       link: "achievements",
       icon: <FaTrophy className="h-3.5 w-3.5" />,
+    },
+    {
+      name: "Resume",
+      link: "resume",
+      icon: <FaFileAlt className="h-3.5 w-3.5" />,
     },
   ];
 
@@ -126,7 +126,7 @@ function Navbar() {
 
   return (
     <nav className="flex items-center gap-0.5 sm:gap-1">
-      {primaryNavItems.map((navItem) => (
+      {navItems.map((navItem) => (
         <Link
           key={navItem.link}
           to={navItem.link}
@@ -173,7 +173,7 @@ function Navbar() {
             role="menu"
             className="absolute right-0 top-full z-50 mt-1 min-w-44 rounded-xl border border-white/10 bg-black/90 p-2 shadow-lg shadow-black/30 backdrop-blur-md"
           >
-            {secondaryNavItems.map((navItem) => (
+            {moreNavItems.map((navItem) => (
               <Link
                 key={navItem.link}
                 to={navItem.link}

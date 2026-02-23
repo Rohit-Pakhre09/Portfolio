@@ -37,11 +37,16 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
   const starsRef = useRef<Star[]>([]);
   const shootingStarsRef = useRef<ShootingStar[]>([]);
   const rafRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(true);
+  const shouldAnimateRef = useRef(true);
+  const isMobileRef = useRef(false);
+  const frameIntervalRef = useRef(16.6);
+  const lastFrameRef = useRef(0);
   const lastSpawnRef = useRef(0);
   const sizeRef = useRef({ width: 0, height: 0, dpr: 1 });
 
-  const createStars = useCallback((width: number, height: number) => {
-    starsRef.current = Array.from({ length: quantity }, () => {
+  const createStars = useCallback((width: number, height: number, count: number) => {
+    starsRef.current = Array.from({ length: count }, () => {
       const depth = Math.random();
       return {
         x: Math.random() * width,
@@ -52,7 +57,7 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
         layerSpeed: 0.04 + depth * 0.16,
       };
     });
-  }, [quantity]);
+  }, []);
 
   const spawnShootingStar = useCallback((width: number, height: number) => {
     const startX = width * (0.15 + Math.random() * 0.7);
@@ -80,9 +85,15 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    shouldAnimateRef.current = !reduceMotionQuery.matches;
+    isMobileRef.current = window.matchMedia("(max-width: 768px)").matches;
+    frameIntervalRef.current = isMobileRef.current ? 1000 / 30 : 1000 / 60;
+
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const parentRect = canvas.parentElement?.getBoundingClientRect();
+    const width = Math.floor(parentRect?.width || window.innerWidth);
+    const height = Math.floor(parentRect?.height || window.innerHeight);
     sizeRef.current = { width, height, dpr };
 
     canvas.width = Math.floor(width * dpr);
@@ -91,16 +102,27 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    createStars(width, height);
+    const particleCount = isMobileRef.current
+      ? Math.max(48, Math.floor(quantity * 0.45))
+      : quantity;
+    createStars(width, height, particleCount);
     shootingStarsRef.current = [];
     lastSpawnRef.current = performance.now();
-  }, [createStars]);
+  }, [createStars, quantity]);
 
   const draw = useCallback((time: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    if (!isVisibleRef.current) return;
+
+    if (time - lastFrameRef.current < frameIntervalRef.current) {
+      rafRef.current = requestAnimationFrame(draw);
+      return;
+    }
+    lastFrameRef.current = time;
 
     const { width, height } = sizeRef.current;
     const t = time * 0.001;
@@ -154,7 +176,10 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
     }
 
     const now = performance.now();
-    if (now - lastSpawnRef.current > 1200 + Math.random() * 1200) {
+    if (
+      shouldAnimateRef.current &&
+      now - lastSpawnRef.current > 1200 + Math.random() * 1200
+    ) {
       spawnShootingStar(width, height);
       lastSpawnRef.current = now;
     }
@@ -195,19 +220,45 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
 
     ctx.shadowBlur = 0;
     ctx.globalAlpha = 1;
-    rafRef.current = requestAnimationFrame(draw);
+    if (shouldAnimateRef.current) {
+      rafRef.current = requestAnimationFrame(draw);
+    }
   }, [particleColor, spawnShootingStar]);
 
   useEffect(() => {
     setupCanvas();
     rafRef.current = requestAnimationFrame(draw);
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+
+        if (entry.isIntersecting && shouldAnimateRef.current && !rafRef.current) {
+          rafRef.current = requestAnimationFrame(draw);
+        }
+
+        if (!entry.isIntersecting && rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = null;
+        }
+      },
+      { threshold: 0.01 },
+    );
+
+    if (canvasRef.current) {
+      observer.observe(canvasRef.current);
+    }
+
     const onResize = () => setupCanvas();
     window.addEventListener("resize", onResize);
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", onResize);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
     };
   }, [draw, setupCanvas]);
 
