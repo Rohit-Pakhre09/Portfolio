@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { FaDownload, FaFileAlt } from "react-icons/fa";
 
-const resumePath = "/resume/Rohit_Pakhre_FullStackDeveloper_Resume.pdf";
+const resumePath = "/resume/Rohit_Pakhre_Full_Stack_Developer.pdf";
 
 function ResumeSection() {
   return (
