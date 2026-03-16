@@ -7,7 +7,11 @@ import CustomCursor from "@/components/ui/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL as string;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Rohit Pakhre | MERN Stack Developer",
   description:
     "The official portfolio of Rohit Pakhre, a MERN stack developer.",
@@ -17,6 +21,29 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
+  },
+  openGraph: {
+    title: "Rohit Pakhre | MERN Stack Developer",
+    description:
+      "The official portfolio of Rohit Pakhre, MERN stack developer.",
+    url: siteUrl,
+    siteName: "Rohit Pakhre Portfolio",
+    images: [
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+        width: 64,
+        height: 64,
+        alt: "Rohit Pakhre portfolio icon",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Rohit Pakhre | MERN Stack Developer",
+    description:
+      "The official portfolio of Rohit Pakhre, MERN stack developer.",
+    images: ["/favicon.svg"],
   },
 };
 
