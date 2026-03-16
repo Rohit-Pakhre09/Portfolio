@@ -8,13 +8,14 @@ import CustomCursor from "@/components/ui/CustomCursor";
 const inter = Inter({ subsets: ["latin"] });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL as string;
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+  "https://rohit-pakhre-portfolio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Rohit Pakhre | MERN Stack Developer",
   description:
-    "The official portfolio of Rohit Pakhre, a MERN stack developer.",
+    "The official portfolio of Rohit Pakhre, MERN stack developer.",
   authors: [{ name: "Rohit Pakhre" }],
   keywords: ["MERN", "React", "Node.js", "MongoDB", "Express", "Portfolio"],
   icons: {
