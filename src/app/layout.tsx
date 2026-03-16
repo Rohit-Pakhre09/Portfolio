@@ -31,11 +31,11 @@ export const metadata: Metadata = {
     siteName: "Rohit Pakhre Portfolio",
     images: [
       {
-        url: "/favicon.svg",
-        type: "image/svg+xml",
-        width: 64,
-        height: 64,
-        alt: "Rohit Pakhre portfolio icon",
+        url: "/opengraph-image.png",
+        type: "image/png",
+        width: 1200,
+        height: 630,
+        alt: "Rohit Pakhre portfolio preview image",
       },
     ],
   },
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Rohit Pakhre | MERN Stack Developer",
     description:
       "The official portfolio of Rohit Pakhre, MERN stack developer.",
-    images: ["/favicon.svg"],
+    images: ["/opengraph-image.png"],
   },
 };
 
