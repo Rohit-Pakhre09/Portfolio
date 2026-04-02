@@ -27,6 +27,7 @@ function Navbar() {
   const moreMenuRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const moreMenuId = "navbar-more-menu";
+  const scrollDuration = 900;
   const isDesktopViewport = () =>
     typeof window !== "undefined" &&
     window.matchMedia("(min-width: 640px)").matches;
@@ -132,7 +133,7 @@ function Navbar() {
           to={navItem.link}
           smooth
           spy
-          duration={500}
+          duration={scrollDuration}
           offset={-80}
           activeClass="text-white bg-emerald-500/20 border-emerald-300/40"
           className="cursor-pointer rounded-full border border-transparent px-2 py-1.5 text-xs text-neutral-300 transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white sm:px-3 sm:py-2 sm:text-sm"
@@ -179,7 +180,7 @@ function Navbar() {
                 to={navItem.link}
                 smooth
                 spy
-                duration={500}
+                duration={scrollDuration}
                 offset={-80}
                 onClick={() => setIsMoreOpen(false)}
                 activeClass="text-white bg-emerald-500/20 border-emerald-300/40"

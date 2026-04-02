@@ -19,6 +19,7 @@ export const projects: Project[] = [
     title: "Cipher",
     description:
       "A sleek real-time chat app enabling instant, smooth, and secure communication",
+      liveLink: "https://cipher-web-chat.vercel.app/",
     sourceLink: "https://github.com/Rohit-Pakhre09/Cipher/",
     image: "/images/Cipher.png",
   },

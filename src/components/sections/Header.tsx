@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import Navbar from "./Navbar";
 
 function Header() {
+  const scrollDuration = 900;
+
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
@@ -21,7 +23,7 @@ function Header() {
         <Link
           to="home"
           smooth
-          duration={500}
+          duration={scrollDuration}
           className="flex cursor-pointer items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 transition-colors hover:border-emerald-300/40 sm:gap-2 sm:px-3"
         >
           <Image

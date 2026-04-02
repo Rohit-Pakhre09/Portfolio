@@ -57,10 +57,12 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={inter.className} suppressHydrationWarning>
         <CustomCursor />
-        <div className="relative min-h-screen w-full bg-white dark:bg-black dark:bg-grid-white/[0.2] bg-grid-black/[0.2]">
-          <Header />
-          <main className="relative z-10 pt-14 sm:pt-16">{children}</main>
-          <Footer />
+        <div className="relative min-h-screen w-full overflow-hidden bg-white bg-grid-black/[0.2] dark:bg-black dark:bg-grid-white/[0.2]">
+          <div className="relative z-10">
+            <Header />
+            <main className="relative z-10 pt-14 sm:pt-16">{children}</main>
+            <Footer />
+          </div>
         </div>
       </body>
     </html>
