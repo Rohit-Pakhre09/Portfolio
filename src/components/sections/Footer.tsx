@@ -1,7 +1,11 @@
 "use client";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
+import { Link } from "react-scroll";
+
 function Footer() {
+  const scrollDuration = 700;
+
   return (
     <footer className="relative z-10 mt-16 border-t border-white/10 bg-black/70 text-white backdrop-blur-md">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
@@ -15,12 +19,15 @@ function Footer() {
             <p className="text-xs uppercase tracking-[0.2em] text-emerald-300/70">
               Building reliable digital experiences
             </p>
-            <a
-              href="#contact"
+            <Link
+              to="contact"
+              smooth
+              duration={scrollDuration}
+              offset={-80}
               className="mt-3 inline-flex rounded-full border border-emerald-300/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-200 transition-colors hover:bg-emerald-500/20"
             >
               Start a project
-            </a>
+            </Link>
           </div>
 
           <div className="text-center md:text-left">
@@ -28,54 +35,78 @@ function Footer() {
               Quick Links
             </p>
             <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm md:justify-start">
-              <a
-                href="#about"
+              <Link
+                to="about"
+                smooth
+                duration={scrollDuration}
+                offset={-80}
                 className="text-gray-400 transition-colors hover:text-emerald-300"
               >
                 About
-              </a>
-              <a
-                href="#skills"
+              </Link>
+              <Link
+                to="skills"
+                smooth
+                duration={scrollDuration}
+                offset={-80}
                 className="text-gray-400 transition-colors hover:text-emerald-300"
               >
                 Skills
-              </a>
-              <a
-                href="#education"
+              </Link>
+              <Link
+                to="education"
+                smooth
+                duration={scrollDuration}
+                offset={-80}
                 className="text-gray-400 transition-colors hover:text-emerald-300"
               >
                 Education
-              </a>
-              <a
-                href="#experience"
+              </Link>
+              <Link
+                to="experience"
+                smooth
+                duration={scrollDuration}
+                offset={-80}
                 className="text-gray-400 transition-colors hover:text-emerald-300"
               >
                 Experience
-              </a>
-              <a
-                href="#projects"
+              </Link>
+              <Link
+                to="projects"
+                smooth
+                duration={scrollDuration}
+                offset={-80}
                 className="text-gray-400 transition-colors hover:text-emerald-300"
               >
                 Projects
-              </a>
-              <a
-                href="#achievements"
+              </Link>
+              <Link
+                to="achievements"
+                smooth
+                duration={scrollDuration}
+                offset={-80}
                 className="text-gray-400 transition-colors hover:text-emerald-300"
               >
                 Achievements
-              </a>
-              <a
-                href="#resume"
+              </Link>
+              <Link
+                to="resume"
+                smooth
+                duration={scrollDuration}
+                offset={-80}
                 className="text-gray-400 transition-colors hover:text-emerald-300"
               >
                 Resume
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                to="contact"
+                smooth
+                duration={scrollDuration}
+                offset={-80}
                 className="text-gray-400 transition-colors hover:text-emerald-300"
               >
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -115,12 +146,15 @@ function Footer() {
             &copy; {new Date().getFullYear()} Rohit Pakhre. All rights reserved.
           </p>
 
-          <a
-            href="#home"
+          <Link
+            to="home"
+            smooth
+            duration={scrollDuration}
+            offset={-80}
             className="rounded-full border border-white/20 px-3 py-1 transition-colors hover:border-emerald-300/40 hover:text-emerald-300"
           >
             Back to top
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
