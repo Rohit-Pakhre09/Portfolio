@@ -144,7 +144,7 @@ function ContactSection() {
             <div className="rounded-3xl border border-white/10 bg-linear-to-br from-white/10 via-white/4 to-transparent p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8">
               <h3 className="text-xl font-semibold text-white">Get In Touch</h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-300">
-                I am open to freelance projects, collaborations, and full-time opportunities. If your team needs a reliable full stack developer, let&apos;s connect.
+                I am open to freelance projects, collaborations, and full-time opportunities. If your team needs a reliable software developer, let&apos;s connect.
               </p>
               <div className="mt-8 space-y-4">
                 <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/3 px-4 py-3">

@@ -48,7 +48,7 @@ function AboutSection() {
             className="space-y-4 text-left"
           >
             <p className="text-sm leading-relaxed text-neutral-200 sm:text-base">
-              I am Rohit Pakhre, a fresher full stack developer with a MERN stack niche. I enjoy building end-to-end web products and turning ideas into working solutions.
+              I am Rohit Pakhre, a fresher software developer with a MERN stack niche. I enjoy building end-to-end web products and turning ideas into working solutions.
             </p>
             <p className="text-sm leading-relaxed text-neutral-300 sm:text-base">
               My strongest learning and project work has been around MongoDB, Express, React, and Node.js. I focus on reusable components, REST APIs, and smooth user experiences.

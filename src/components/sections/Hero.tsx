@@ -28,7 +28,7 @@ function HeroSection() {
           Hi, I'm Rohit Pakhre
         </h1>
         <TextGenerateEffect
-          words="Full Stack Developer, building innovative web solutions." // More descriptive
+          words="Software Developer, building innovative web solutions." // More descriptive
           className="bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-lg font-bold text-transparent md:text-3xl lg:text-4xl" // Adjusted sizes
         />
         <p className="mx-auto mt-4 max-w-lg text-sm font-normal text-neutral-300 md:text-lg">

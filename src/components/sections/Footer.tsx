@@ -10,7 +10,7 @@ function Footer() {
           <div className="space-y-2 text-center md:text-left">
             <p className="text-lg font-bold">Rohit Pakhre</p>
             <p className="max-w-sm text-sm leading-relaxed text-gray-400">
-              Full Stack Developer focused on building clean, scalable, and
+              Software Developer focused on building clean, scalable, and
               user-first web experiences.
             </p>
             <p className="text-xs uppercase tracking-[0.2em] text-emerald-300/70">
