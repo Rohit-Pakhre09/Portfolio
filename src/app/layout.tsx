@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Rohit Pakhre | Software Developer",
   description:
-    "Rohit Pakhre is a software developer specializing in the MERN stack — building modern, scalable web applications. Explore the portfolio of Rohit Pakhre, also known as Rohit or Pakhre.",
+    "Rohit Pakhre is a software developer based in Surat, Gujarat, India, specializing in React, Next.js, Node.js, and MERN stack web applications. Explore his projects and experience.",
   authors: [{ name: "Rohit Pakhre" }],
   keywords: [
     "Rohit Pakhre",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rohit Pakhre | Software Developer",
     description:
-      "Rohit Pakhre is a software developer specializing in the MERN stack — building modern, scalable web applications.",
+      "Rohit Pakhre is a software developer based in Surat, Gujarat, India, specializing in React, Next.js, Node.js, and MERN stack web applications.",
     url: siteUrl,
     siteName: "Rohit Pakhre Portfolio",
     images: ["/opengraph-image"],
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rohit Pakhre | Software Developer",
     description:
-      "Rohit Pakhre is a software developer specializing in the MERN stack — building modern, scalable web applications.",
+      "Rohit Pakhre is a software developer based in Surat, Gujarat, India, specializing in React, Next.js, Node.js, and MERN stack web applications.",
     images: ["/opengraph-image"],
   },
   verification: {
@@ -75,7 +75,13 @@ const jsonLd = {
       url: siteUrl,
       jobTitle: "Software Developer",
       description:
-        "Rohit Pakhre is a software developer specializing in the MERN stack (MongoDB, Express, React, Node.js), building modern and scalable web applications.",
+        "Rohit Pakhre is a software developer based in Surat, Gujarat, India, specializing in React, Next.js, Node.js, and MERN stack web applications.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Surat",
+        addressRegion: "Gujarat",
+        addressCountry: "IN",
+      },
       knowsAbout: [
         "Software Development",
         "MERN Stack",
@@ -92,7 +98,7 @@ const jsonLd = {
         "https://linkedin.com/in/rohit-pakhre",
         "https://www.instagram.com/rohit._.ix/",
       ],
-      image: `${siteUrl}/favicon.png`,
+      image: `${siteUrl}/images/profileImage.png`,
       email: "pakhrerohit281@gmail.com",
     },
     {
@@ -101,7 +107,7 @@ const jsonLd = {
       url: siteUrl,
       name: "Rohit Pakhre Portfolio",
       description:
-        "The official portfolio of Rohit Pakhre, a software developer specializing in the MERN stack.",
+        "The official portfolio of Rohit Pakhre, a software developer based in Surat, Gujarat, India, specializing in modern web applications.",
       author: { "@id": `${siteUrl}/#person` },
     },
   ],
