@@ -35,7 +35,8 @@ function AchievementsSection() {
                   Prompt Engineering Certification
                 </h3>
                 <p className="mt-2 text-sm text-neutral-300 sm:text-base">
-                  Completed an online Prompt Engineering program and shared the achievement on LinkedIn.
+                  Completed an online Prompt Engineering program and shared the
+                  achievement on LinkedIn.
                 </p>
               </div>
               <a

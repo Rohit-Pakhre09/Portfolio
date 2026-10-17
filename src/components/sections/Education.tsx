@@ -101,4 +101,3 @@ function EducationSection() {
 }
 
 export default EducationSection;
-

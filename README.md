@@ -1,8 +1,8 @@
-<h1 align="center">Rohit Pakhre | Full-Stack Developer Portfolio</h1>
+<h1 align="center">Rohit Pakhre | Software Developer Portfolio</h1>
 
 <p align="center">
   <b>Interactive, motion-first developer portfolio</b><br/>
-  Built to present full-stack capability with modern UX, performance, and conversion-focused sections.
+  Built to present software development capabilities with modern UX, performance, and conversion-focused sections.
 </p>
 
 <p align="center">
@@ -30,7 +30,7 @@
 | --- | --- |
 | Live Website | [rohit-pakhre-portfolio.vercel.app](https://rohit-pakhre-portfolio.vercel.app) |
 | GitHub Profile | [Rohit-Pakhre09](https://github.com/Rohit-Pakhre09) |
-| Primary Goal | Showcase MERN/full-stack profile for jobs, freelance, and collaborations |
+| Primary Goal | Showcase a MERN-focused software development profile for jobs, freelance, and collaborations |
 
 ## Why This Portfolio Stands Out
 ```txt
@@ -229,7 +229,7 @@ pnpm format   # Biome auto-format
 | Hero/About/Skills/Resume/Contact content | `src/components/sections/*` |
 | Project cards data | `src/lib/projects.ts` |
 | Contact request behavior | `src/components/sections/Contact.tsx` |
-| Resume document | `public/resume/Rohit_Pakhre_Full_Stack_Developer.pdf` |
+| Resume document | `public/resume/Rohit_Pakhre_Software_Developer.pdf` |
 | Project and profile images | `public/images/*` |
 
 </details>

@@ -25,7 +25,7 @@ function DigitalGlobe({ size = 160 }: DigitalGlobeProps) {
 
         {[0.24, 0.42, 0.62, 0.78].map((scale, index) => (
           <div
-            key={`meridian-${index}`}
+            key={`meridian-${scale}`}
             className="absolute inset-3 rounded-full border border-emerald-300/28"
             style={{ transform: `rotate(${index * 24}deg) scaleX(${scale})` }}
           />
@@ -33,7 +33,7 @@ function DigitalGlobe({ size = 160 }: DigitalGlobeProps) {
 
         {[24, 37, 50, 63, 76].map((top, index) => (
           <div
-            key={`latitude-${index}`}
+            key={`latitude-${top}`}
             className="absolute left-1/2 h-px -translate-x-1/2 bg-emerald-300/40"
             style={{ top: `${top}%`, width: `${76 - index * 10}%` }}
           />
@@ -73,17 +73,24 @@ function DigitalGlobe({ size = 160 }: DigitalGlobeProps) {
         className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-200/60"
       />
 
-      {[["22%", "26%"], ["20%", "62%"], ["67%", "58%"], ["48%", "18%"]].map(
-        ([left, top], index) => (
-          <motion.div
-            key={`${left}-${top}`}
-            animate={{ opacity: [0.3, 1, 0.3] }}
-            transition={{ duration: 1.8 + index * 0.6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute h-1.5 w-1.5 rounded-full bg-emerald-200 shadow-[0_0_14px_rgba(110,231,183,1)]"
-            style={{ left, top }}
-          />
-        )
-      )}
+      {[
+        ["22%", "26%"],
+        ["20%", "62%"],
+        ["67%", "58%"],
+        ["48%", "18%"],
+      ].map(([left, top], index) => (
+        <motion.div
+          key={`${left}-${top}`}
+          animate={{ opacity: [0.3, 1, 0.3] }}
+          transition={{
+            duration: 1.8 + index * 0.6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute h-1.5 w-1.5 rounded-full bg-emerald-200 shadow-[0_0_14px_rgba(110,231,183,1)]"
+          style={{ left, top }}
+        />
+      ))}
 
       <div className="absolute inset-[-5%] rounded-full border border-emerald-300/20" />
 

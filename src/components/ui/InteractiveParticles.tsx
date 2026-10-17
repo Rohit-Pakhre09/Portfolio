@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef } from "react";
+import type React from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface InteractiveParticlesProps {
@@ -45,21 +46,24 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
   const lastSpawnRef = useRef(0);
   const sizeRef = useRef({ width: 0, height: 0, dpr: 1 });
 
-  const createStars = useCallback((width: number, height: number, count: number) => {
-    starsRef.current = Array.from({ length: count }, () => {
-      const depth = Math.random();
-      return {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: 0.4 + Math.random() * (depth > 0.75 ? 1.8 : 1.1),
-        alpha: 0.2 + Math.random() * 0.7,
-        twinkle: Math.random() * Math.PI * 2,
-        layerSpeed: 0.04 + depth * 0.16,
-      };
-    });
-  }, []);
+  const createStars = useCallback(
+    (width: number, height: number, count: number) => {
+      starsRef.current = Array.from({ length: count }, () => {
+        const depth = Math.random();
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: 0.4 + Math.random() * (depth > 0.75 ? 1.8 : 1.1),
+          alpha: 0.2 + Math.random() * 0.7,
+          twinkle: Math.random() * Math.PI * 2,
+          layerSpeed: 0.04 + depth * 0.16,
+        };
+      });
+    },
+    [],
+  );
 
-  const spawnShootingStar = useCallback((width: number, height: number) => {
+  const spawnShootingStar = useCallback((width: number, _height: number) => {
     const startX = width * (0.15 + Math.random() * 0.7);
     const startY = -30 - Math.random() * 100;
     const speed = 9 + Math.random() * 6;
@@ -85,7 +89,9 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const reduceMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
     shouldAnimateRef.current = !reduceMotionQuery.matches;
     isMobileRef.current = window.matchMedia("(max-width: 768px)").matches;
     frameIntervalRef.current = isMobileRef.current ? 1000 / 30 : 1000 / 60;
@@ -110,120 +116,123 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
     lastSpawnRef.current = performance.now();
   }, [createStars, quantity]);
 
-  const draw = useCallback((time: number) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+  const draw = useCallback(
+    (time: number) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
 
-    if (!isVisibleRef.current) return;
+      if (!isVisibleRef.current) return;
 
-    if (time - lastFrameRef.current < frameIntervalRef.current) {
-      rafRef.current = requestAnimationFrame(draw);
-      return;
-    }
-    lastFrameRef.current = time;
+      if (time - lastFrameRef.current < frameIntervalRef.current) {
+        rafRef.current = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrameRef.current = time;
 
-    const { width, height } = sizeRef.current;
-    const t = time * 0.001;
+      const { width, height } = sizeRef.current;
+      const t = time * 0.001;
 
-    const bg = ctx.createLinearGradient(0, 0, 0, height);
-    bg.addColorStop(0, "rgba(0, 0, 0, 0.96)");
-    bg.addColorStop(0.45, "rgba(2, 6, 18, 0.93)");
-    bg.addColorStop(1, "rgba(0, 0, 0, 0.97)");
-    ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, width, height);
+      const bg = ctx.createLinearGradient(0, 0, 0, height);
+      bg.addColorStop(0, "rgba(0, 0, 0, 0.96)");
+      bg.addColorStop(0.45, "rgba(2, 6, 18, 0.93)");
+      bg.addColorStop(1, "rgba(0, 0, 0, 0.97)");
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, width, height);
 
-    const nebula1 = ctx.createRadialGradient(
-      width * 0.2,
-      height * 0.18,
-      0,
-      width * 0.2,
-      height * 0.18,
-      Math.min(width, height) * 0.5,
-    );
-    nebula1.addColorStop(0, "rgba(56, 189, 248, 0.07)");
-    nebula1.addColorStop(1, "rgba(56, 189, 248, 0)");
-    ctx.fillStyle = nebula1;
-    ctx.fillRect(0, 0, width, height);
+      const nebula1 = ctx.createRadialGradient(
+        width * 0.2,
+        height * 0.18,
+        0,
+        width * 0.2,
+        height * 0.18,
+        Math.min(width, height) * 0.5,
+      );
+      nebula1.addColorStop(0, "rgba(56, 189, 248, 0.07)");
+      nebula1.addColorStop(1, "rgba(56, 189, 248, 0)");
+      ctx.fillStyle = nebula1;
+      ctx.fillRect(0, 0, width, height);
 
-    const nebula2 = ctx.createRadialGradient(
-      width * 0.78,
-      height * 0.74,
-      0,
-      width * 0.78,
-      height * 0.74,
-      Math.min(width, height) * 0.6,
-    );
-    nebula2.addColorStop(0, "rgba(139, 92, 246, 0.05)");
-    nebula2.addColorStop(1, "rgba(139, 92, 246, 0)");
-    ctx.fillStyle = nebula2;
-    ctx.fillRect(0, 0, width, height);
+      const nebula2 = ctx.createRadialGradient(
+        width * 0.78,
+        height * 0.74,
+        0,
+        width * 0.78,
+        height * 0.74,
+        Math.min(width, height) * 0.6,
+      );
+      nebula2.addColorStop(0, "rgba(139, 92, 246, 0.05)");
+      nebula2.addColorStop(1, "rgba(139, 92, 246, 0)");
+      ctx.fillStyle = nebula2;
+      ctx.fillRect(0, 0, width, height);
 
-    for (const star of starsRef.current) {
-      star.y += star.layerSpeed * 0.09;
-      if (star.y > height + 2) star.y = -2;
+      for (const star of starsRef.current) {
+        star.y += star.layerSpeed * 0.09;
+        if (star.y > height + 2) star.y = -2;
 
-      const twinkle = 0.55 + 0.45 * Math.sin(t * 1.8 + star.twinkle);
-      ctx.globalAlpha = star.alpha * twinkle;
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = particleColor;
-      ctx.shadowColor = "rgba(186, 230, 253, 0.65)";
-      ctx.shadowBlur = 8;
-      ctx.fill();
-      ctx.closePath();
-    }
-
-    const now = performance.now();
-    if (
-      shouldAnimateRef.current &&
-      now - lastSpawnRef.current > 1200 + Math.random() * 1200
-    ) {
-      spawnShootingStar(width, height);
-      lastSpawnRef.current = now;
-    }
-
-    const alive: ShootingStar[] = [];
-    for (const shot of shootingStarsRef.current) {
-      shot.life += 1;
-      shot.x += shot.vx;
-      shot.y += shot.vy;
-
-      if (
-        shot.life < shot.maxLife &&
-        shot.x < width + 200 &&
-        shot.y < height + 160
-      ) {
-        alive.push(shot);
+        const twinkle = 0.55 + 0.45 * Math.sin(t * 1.8 + star.twinkle);
+        ctx.globalAlpha = star.alpha * twinkle;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particleColor;
+        ctx.shadowColor = "rgba(186, 230, 253, 0.65)";
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.closePath();
       }
 
-      const lifeT = 1 - shot.life / shot.maxLife;
-      const tailX = shot.x - shot.vx * (shot.length / 18);
-      const tailY = shot.y - shot.vy * (shot.length / 18);
-      const grad = ctx.createLinearGradient(shot.x, shot.y, tailX, tailY);
-      grad.addColorStop(0, `rgba(255, 255, 255, ${0.95 * lifeT})`);
-      grad.addColorStop(0.35, `rgba(125, 211, 252, ${0.45 * lifeT})`);
-      grad.addColorStop(1, "rgba(125, 211, 252, 0)");
+      const now = performance.now();
+      if (
+        shouldAnimateRef.current &&
+        now - lastSpawnRef.current > 1200 + Math.random() * 1200
+      ) {
+        spawnShootingStar(width, height);
+        lastSpawnRef.current = now;
+      }
 
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 1.7;
-      ctx.lineCap = "round";
+      const alive: ShootingStar[] = [];
+      for (const shot of shootingStarsRef.current) {
+        shot.life += 1;
+        shot.x += shot.vx;
+        shot.y += shot.vy;
+
+        if (
+          shot.life < shot.maxLife &&
+          shot.x < width + 200 &&
+          shot.y < height + 160
+        ) {
+          alive.push(shot);
+        }
+
+        const lifeT = 1 - shot.life / shot.maxLife;
+        const tailX = shot.x - shot.vx * (shot.length / 18);
+        const tailY = shot.y - shot.vy * (shot.length / 18);
+        const grad = ctx.createLinearGradient(shot.x, shot.y, tailX, tailY);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${0.95 * lifeT})`);
+        grad.addColorStop(0.35, `rgba(125, 211, 252, ${0.45 * lifeT})`);
+        grad.addColorStop(1, "rgba(125, 211, 252, 0)");
+
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.7;
+        ctx.lineCap = "round";
+        ctx.globalAlpha = 1;
+        ctx.beginPath();
+        ctx.moveTo(shot.x, shot.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.stroke();
+        ctx.closePath();
+      }
+      shootingStarsRef.current = alive;
+
+      ctx.shadowBlur = 0;
       ctx.globalAlpha = 1;
-      ctx.beginPath();
-      ctx.moveTo(shot.x, shot.y);
-      ctx.lineTo(tailX, tailY);
-      ctx.stroke();
-      ctx.closePath();
-    }
-    shootingStarsRef.current = alive;
-
-    ctx.shadowBlur = 0;
-    ctx.globalAlpha = 1;
-    if (shouldAnimateRef.current) {
-      rafRef.current = requestAnimationFrame(draw);
-    }
-  }, [particleColor, spawnShootingStar]);
+      if (shouldAnimateRef.current) {
+        rafRef.current = requestAnimationFrame(draw);
+      }
+    },
+    [particleColor, spawnShootingStar],
+  );
 
   useEffect(() => {
     setupCanvas();
@@ -233,7 +242,11 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
       ([entry]) => {
         isVisibleRef.current = entry.isIntersecting;
 
-        if (entry.isIntersecting && shouldAnimateRef.current && !rafRef.current) {
+        if (
+          entry.isIntersecting &&
+          shouldAnimateRef.current &&
+          !rafRef.current
+        ) {
           rafRef.current = requestAnimationFrame(draw);
         }
 
@@ -262,7 +275,9 @@ const InteractiveParticles: React.FC<InteractiveParticlesProps> = ({
     };
   }, [draw, setupCanvas]);
 
-  return <canvas ref={canvasRef} className={cn("absolute inset-0 z-0", className)} />;
+  return (
+    <canvas ref={canvasRef} className={cn("absolute inset-0 z-0", className)} />
+  );
 };
 
 export default InteractiveParticles;

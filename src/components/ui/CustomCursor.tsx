@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const INTERACTIVE_SELECTOR =
   'a, button, [role="button"], input, textarea, select, label, [data-cursor="pointer"]';
@@ -18,10 +18,26 @@ function CustomCursor() {
   const ringXTarget = useMotionValue(-100);
   const ringYTarget = useMotionValue(-100);
 
-  const ringX = useSpring(ringXTarget, { stiffness: 320, damping: 28, mass: 0.25 });
-  const ringY = useSpring(ringYTarget, { stiffness: 320, damping: 28, mass: 0.25 });
-  const haloX = useSpring(ringXTarget, { stiffness: 120, damping: 24, mass: 0.45 });
-  const haloY = useSpring(ringYTarget, { stiffness: 120, damping: 24, mass: 0.45 });
+  const ringX = useSpring(ringXTarget, {
+    stiffness: 320,
+    damping: 28,
+    mass: 0.25,
+  });
+  const ringY = useSpring(ringYTarget, {
+    stiffness: 320,
+    damping: 28,
+    mass: 0.25,
+  });
+  const haloX = useSpring(ringXTarget, {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.45,
+  });
+  const haloY = useSpring(ringYTarget, {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.45,
+  });
 
   useEffect(() => {
     const canUseCustomCursor =
@@ -79,20 +95,48 @@ function CustomCursor() {
       <motion.div
         style={{ x: haloX, y: haloY }}
         animate={{
-          opacity: visible ? (interactive ? (isMinimal ? 0.2 : 0.55) : isMinimal ? 0.12 : 0.35) : 0,
-          scale: pressed ? 0.75 : interactive ? (isMinimal ? 1.1 : 1.5) : isMinimal ? 0.95 : 1.1,
+          opacity: visible
+            ? interactive
+              ? isMinimal
+                ? 0.2
+                : 0.55
+              : isMinimal
+                ? 0.12
+                : 0.35
+            : 0,
+          scale: pressed
+            ? 0.75
+            : interactive
+              ? isMinimal
+                ? 1.1
+                : 1.5
+              : isMinimal
+                ? 0.95
+                : 1.1,
         }}
         transition={{ type: "spring", stiffness: 220, damping: 22 }}
         className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full ${
-          isMinimal ? "h-10 w-10 bg-emerald-300/18 blur-lg" : "h-16 w-16 bg-emerald-400/35 blur-xl"
+          isMinimal
+            ? "h-10 w-10 bg-emerald-300/18 blur-lg"
+            : "h-16 w-16 bg-emerald-400/35 blur-xl"
         }`}
       />
       <motion.div
         style={{ x: ringX, y: ringY }}
         animate={{
           opacity: visible ? 1 : 0,
-          scale: pressed ? (isMinimal ? 0.9 : 0.84) : interactive ? (isMinimal ? 1.16 : 1.38) : 1,
-          borderColor: interactive ? "rgba(16, 185, 129, 0.95)" : "rgba(110, 231, 183, 0.68)",
+          scale: pressed
+            ? isMinimal
+              ? 0.9
+              : 0.84
+            : interactive
+              ? isMinimal
+                ? 1.16
+                : 1.38
+              : 1,
+          borderColor: interactive
+            ? "rgba(16, 185, 129, 0.95)"
+            : "rgba(110, 231, 183, 0.68)",
           boxShadow: interactive
             ? isMinimal
               ? "0 0 0 1px rgba(16,185,129,0.18), 0 0 10px rgba(16,185,129,0.2)"
@@ -110,8 +154,18 @@ function CustomCursor() {
         style={{ x: dotX, y: dotY }}
         animate={{
           opacity: visible ? 1 : 0,
-          scale: pressed ? (isMinimal ? 0.85 : 0.72) : interactive ? (isMinimal ? 1.05 : 1.24) : 1,
-          backgroundColor: interactive ? "rgb(52, 211, 153)" : "rgb(167, 243, 208)",
+          scale: pressed
+            ? isMinimal
+              ? 0.85
+              : 0.72
+            : interactive
+              ? isMinimal
+                ? 1.05
+                : 1.24
+              : 1,
+          backgroundColor: interactive
+            ? "rgb(52, 211, 153)"
+            : "rgb(167, 243, 208)",
         }}
         transition={{ type: "spring", stiffness: 450, damping: 28 }}
         className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full ${

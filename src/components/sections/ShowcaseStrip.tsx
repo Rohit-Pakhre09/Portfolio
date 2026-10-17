@@ -1,10 +1,15 @@
 "use client";
 
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 
 const primaryItems = [
-  "Scalable Full Stack Apps",
+  "Scalable Web Applications",
   "Clean Architecture",
   "Performance First",
   "Production Ready UI",
@@ -21,8 +26,18 @@ const secondaryItems = [
   "Deployment + Monitoring",
 ];
 
+const primaryLoopItems = primaryItems.flatMap((item) => [
+  { key: `primary-${item}`, label: item },
+  { key: `primary-${item}-copy`, label: item },
+]);
+
+const secondaryLoopItems = secondaryItems.flatMap((item) => [
+  { key: `secondary-${item}`, label: item },
+  { key: `secondary-${item}-copy`, label: item },
+]);
+
 const itemDetails: Record<string, string> = {
-  "Scalable Full Stack Apps":
+  "Scalable Web Applications":
     "Architected for growth with clean modules, reusable patterns, and stable release workflows.",
   "Clean Architecture":
     "Readable structure with separation of concerns, making teams faster and maintenance safer.",
@@ -80,9 +95,9 @@ function ShowcaseStrip() {
               dragElastic={0.2}
               className="flex w-max min-w-full cursor-grab gap-3 px-4 active:cursor-grabbing sm:px-6 lg:px-8"
             >
-              {[...primaryItems, ...primaryItems].map((item, index) => (
+              {primaryLoopItems.map(({ key, label: item }) => (
                 <motion.button
-                  key={`primary-${index}`}
+                  key={key}
                   type="button"
                   onMouseEnter={() => setActiveItem(item)}
                   onFocus={() => setActiveItem(item)}
@@ -108,9 +123,9 @@ function ShowcaseStrip() {
               dragElastic={0.2}
               className="flex w-max min-w-full cursor-grab gap-3 px-4 active:cursor-grabbing sm:px-6 lg:px-8"
             >
-              {[...secondaryItems, ...secondaryItems].map((item, index) => (
+              {secondaryLoopItems.map(({ key, label: item }) => (
                 <motion.button
-                  key={`secondary-${index}`}
+                  key={key}
                   type="button"
                   onMouseEnter={() => setActiveItem(item)}
                   onFocus={() => setActiveItem(item)}

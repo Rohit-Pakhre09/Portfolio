@@ -1,24 +1,24 @@
 "use client";
 import type { IconType } from "react-icons";
 import {
-  FaReact,
-  FaNodeJs,
-  FaHtml5,
   FaCss3Alt,
   FaGit,
   FaGithub,
+  FaHtml5,
+  FaNodeJs,
+  FaReact,
   FaServer,
 } from "react-icons/fa";
 import {
-  SiNextdotjs,
-  SiTailwindcss,
-  SiMongodb,
   SiExpress,
-  SiTypescript,
-  SiNetlify,
-  SiPostman,
-  SiVercel,
   SiJavascript,
+  SiMongodb,
+  SiNetlify,
+  SiNextdotjs,
+  SiPostman,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
 } from "react-icons/si";
 
 type Skill = {
@@ -92,7 +92,8 @@ function SkillsSection() {
             Skillset Built for Real Products
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-neutral-300 sm:text-base">
-            I combine strong engineering fundamentals with modern web tooling to ship polished, scalable applications.
+            I combine strong engineering fundamentals with modern web tooling to
+            ship polished, scalable applications.
           </p>
         </div>
 
@@ -103,8 +104,12 @@ function SkillsSection() {
               className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/[0.04] to-transparent p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8"
             >
               <div className="mb-6">
-                <h3 className="text-xl font-semibold text-white">{group.heading}</h3>
-                <p className="mt-1 text-sm text-neutral-300">{group.subheading}</p>
+                <h3 className="text-xl font-semibold text-white">
+                  {group.heading}
+                </h3>
+                <p className="mt-1 text-sm text-neutral-300">
+                  {group.subheading}
+                </p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -116,9 +121,13 @@ function SkillsSection() {
                     <div className="mb-3 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <skill.Icon className="h-5 w-5 text-emerald-300" />
-                        <span className="text-sm font-medium text-white">{skill.title}</span>
+                        <span className="text-sm font-medium text-white">
+                          {skill.title}
+                        </span>
                       </div>
-                      <span className="text-xs text-neutral-400">{skill.level}%</span>
+                      <span className="text-xs text-neutral-400">
+                        {skill.level}%
+                      </span>
                     </div>
                     <div className="h-2 w-full rounded-full bg-white/10">
                       <div

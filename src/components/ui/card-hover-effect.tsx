@@ -1,7 +1,15 @@
 "use client";
+import {
+  AnimatePresence,
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion"; // Added imports
+import type React from "react"; // Added useRef
+import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion"; // Added imports
-import React, { useRef, useState } from "react"; // Added useRef
 
 export const HoverEffect = ({
   items,
@@ -15,21 +23,21 @@ export const HoverEffect = ({
   }[];
   className?: string;
 }) => {
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div
       className={cn(
         "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10",
-        className
+        className,
       )}
     >
       {items.map((item, idx) => (
-        <div
+        <motion.div
           key={item?.title}
           className="relative group  block p-2 h-full w-full"
-          onMouseEnter={() => setHoveredIndex(idx)}
-          onMouseLeave={() => setHoveredIndex(null)}
+          onHoverStart={() => setHoveredIndex(idx)}
+          onHoverEnd={() => setHoveredIndex(null)}
         >
           <AnimatePresence>
             {hoveredIndex === idx && (
@@ -48,11 +56,11 @@ export const HoverEffect = ({
               />
             )}
           </AnimatePresence>
-          <Card key={idx} icon={item.icon}> {/* Pass icon to Card */}
+          <Card icon={item.icon}>
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
           </Card>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
@@ -78,12 +86,12 @@ export const Card = ({
   const rotateX = useTransform(
     smoothMouseY,
     [-100, 100], // Input range (pixels from center)
-    [-8, 8]     // Output range (degrees)
+    [-8, 8], // Output range (degrees)
   );
   const rotateY = useTransform(
     smoothMouseX,
     [-100, 100], // Input range (pixels from center)
-    [-8, 8]     // Output range (degrees)
+    [-8, 8], // Output range (degrees)
   );
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -111,14 +119,16 @@ export const Card = ({
       }}
       className={cn(
         "rounded-2xl h-full w-full p-4 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20 transition-all duration-300", // Added transition
-        className
+        className,
       )}
     >
       <div
         className="absolute inset-0 bg-dot-white/[0.1] opacity-0 group-hover:opacity-100 transition-opacity duration-300" // Subtle background pattern
         style={{
-          maskImage: "radial-gradient(100px 100px at var(--x) var(--y), white, transparent)",
-          WebkitMaskImage: "radial-gradient(100px 100px at var(--x) var(--y), white, transparent)",
+          maskImage:
+            "radial-gradient(100px 100px at var(--x) var(--y), white, transparent)",
+          WebkitMaskImage:
+            "radial-gradient(100px 100px at var(--x) var(--y), white, transparent)",
         }}
       ></div>
       <motion.div
@@ -135,8 +145,15 @@ export const Card = ({
       />
 
       <div className="relative z-50">
-        <div className="p-4 flex flex-col items-center"> {/* Centered content */}
-          {icon && <div className="mb-4 text-4xl text-neutral-500 dark:text-neutral-200">{icon}</div>} {/* Render icon */}
+        <div className="p-4 flex flex-col items-center">
+          {" "}
+          {/* Centered content */}
+          {icon && (
+            <div className="mb-4 text-4xl text-neutral-500 dark:text-neutral-200">
+              {icon}
+            </div>
+          )}{" "}
+          {/* Render icon */}
           {children}
         </div>
       </div>
@@ -168,7 +185,7 @@ export const CardDescription = ({
     <p
       className={cn(
         "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm",
-        className
+        className,
       )}
     >
       {children}

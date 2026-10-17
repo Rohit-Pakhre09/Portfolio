@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaUsers, FaLaptopCode } from "react-icons/fa";
+import { FaLaptopCode, FaUsers } from "react-icons/fa";
 
 const teamHighlights = [
   "Worked in a collaborative team setup during development",
@@ -29,7 +29,8 @@ function ExperienceSection() {
               Team Project Experience as a Fresher
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-neutral-300 sm:text-base">
-              I am currently a fresher, focused on learning and building practical products through real teamwork.
+              I am currently a fresher, focused on learning and building
+              practical products through real teamwork.
             </p>
           </div>
 
@@ -49,7 +50,9 @@ function ExperienceSection() {
               Smart Shelf (Team Project)
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-neutral-300 sm:text-base">
-              Built as a collaborative project where I contributed to development tasks and learned how to work with shared codebases, timelines, and structured communication.
+              Built as a collaborative project where I contributed to
+              development tasks and learned how to work with shared codebases,
+              timelines, and structured communication.
             </p>
 
             <ul className="mt-5 space-y-2">

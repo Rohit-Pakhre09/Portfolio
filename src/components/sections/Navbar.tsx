@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Link } from "react-scroll";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import {
-  FaHome,
-  FaUser,
-  FaTools,
-  FaFolder,
-  FaEnvelope,
-  FaGraduationCap,
   FaBriefcase,
-  FaTrophy,
-  FaFileAlt,
   FaChevronDown,
   FaEllipsisH,
+  FaEnvelope,
+  FaFileAlt,
+  FaFolder,
+  FaGraduationCap,
+  FaHome,
+  FaTools,
+  FaTrophy,
+  FaUser,
 } from "react-icons/fa";
+import { Link } from "react-scroll";
 
 type NavItem = {
   name: string;
@@ -85,7 +85,10 @@ function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (moreMenuRef.current && !moreMenuRef.current.contains(event.target as Node)) {
+      if (
+        moreMenuRef.current &&
+        !moreMenuRef.current.contains(event.target as Node)
+      ) {
         setIsMoreOpen(false);
       }
     };
@@ -144,9 +147,11 @@ function Navbar() {
           </span>
         </Link>
       ))}
+      {/* biome-ignore lint/a11y/useSemanticElements: div correctly wraps a button+dropdown, fieldset is not appropriate */}
       <div
         className="relative"
         ref={moreMenuRef}
+        role="group"
         onMouseEnter={handleMoreMouseEnter}
         onMouseLeave={handleMoreMouseLeave}
       >

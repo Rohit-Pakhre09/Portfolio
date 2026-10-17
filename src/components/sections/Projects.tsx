@@ -1,10 +1,10 @@
 "use client";
-import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useMemo, useState } from "react";
 import { FaExternalLinkAlt, FaGithub, FaImage } from "react-icons/fa";
+import { type Project, projects } from "@/lib/projects";
 import { PinContainer } from "../ui/3d-pin";
-import { projects, type Project } from "@/lib/projects";
 
 const ITEMS_PER_PAGE = 3;
 

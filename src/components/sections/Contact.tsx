@@ -1,6 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import DigitalGlobe from "../ui/DigitalGlobe";
 
@@ -38,7 +39,7 @@ function ContactSection() {
   }, [submissionStatus]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -68,30 +69,37 @@ function ContactSection() {
     if (validate()) {
       setIsSubmitting(true);
       try {
-        if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+        if (
+          !EMAILJS_SERVICE_ID ||
+          !EMAILJS_TEMPLATE_ID ||
+          !EMAILJS_PUBLIC_KEY
+        ) {
           throw new Error("Email service is not configured.");
         }
 
-        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            service_id: EMAILJS_SERVICE_ID,
-            template_id: EMAILJS_TEMPLATE_ID,
-            user_id: EMAILJS_PUBLIC_KEY,
-            template_params: {
-              to_name: EMAILJS_TO_NAME,
-              from_name: formData.name,
-              from_email: formData.email,
-              reply_to: formData.email,
-              subject: `Portfolio Inquiry from ${formData.name}`,
-              message: formData.message,
-              time: new Date().toLocaleString(),
+        const response = await fetch(
+          "https://api.emailjs.com/api/v1.0/email/send",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
             },
-          }),
-        });
+            body: JSON.stringify({
+              service_id: EMAILJS_SERVICE_ID,
+              template_id: EMAILJS_TEMPLATE_ID,
+              user_id: EMAILJS_PUBLIC_KEY,
+              template_params: {
+                to_name: EMAILJS_TO_NAME,
+                from_name: formData.name,
+                from_email: formData.email,
+                reply_to: formData.email,
+                subject: `Portfolio Inquiry from ${formData.name}`,
+                message: formData.message,
+                time: new Date().toLocaleString(),
+              },
+            }),
+          },
+        );
 
         if (!response.ok) {
           const errorText = await response.text();
@@ -106,7 +114,7 @@ function ContactSection() {
         setSubmissionMessage(
           error instanceof Error
             ? error.message
-            : "Failed to send message. Please try again."
+            : "Failed to send message. Please try again.",
         );
       } finally {
         setIsSubmitting(false);
@@ -115,7 +123,10 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative z-10 scroll-mt-24 py-16 sm:scroll-mt-28 sm:py-24 md:py-28">
+    <section
+      id="contact"
+      className="relative z-10 scroll-mt-24 py-16 sm:scroll-mt-28 sm:py-24 md:py-28"
+    >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -right-36 top-28 opacity-55">
           <DigitalGlobe size={380} />
@@ -137,14 +148,17 @@ function ContactSection() {
               Let&apos;s Build Something Great
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-neutral-300 sm:text-base">
-              Share your requirements and timeline. I usually respond within 24 hours.
+              Share your requirements and timeline. I usually respond within 24
+              hours.
             </p>
           </div>
           <div className="grid gap-6 lg:grid-cols-[1fr_1.25fr]">
             <div className="rounded-3xl border border-white/10 bg-linear-to-br from-white/10 via-white/4 to-transparent p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8">
               <h3 className="text-xl font-semibold text-white">Get In Touch</h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-300">
-                I am open to freelance projects, collaborations, and full-time opportunities. If your team needs a reliable software developer, let&apos;s connect.
+                I am open to freelance projects, collaborations, and full-time
+                opportunities. If your team needs a reliable software developer,
+                let&apos;s connect.
               </p>
               <div className="mt-8 space-y-4">
                 <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/3 px-4 py-3">
@@ -167,10 +181,13 @@ function ContactSection() {
                 </div>
                 <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/3 px-4 py-3">
                   <FaMapMarkerAlt className="h-4 w-4 text-emerald-300" />
-                  <span className="text-sm text-neutral-200">Surat - Gujarat, India</span>
+                  <span className="text-sm text-neutral-200">
+                    Surat - Gujarat, India
+                  </span>
                 </div>
                 <div className="rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-xs text-emerald-200">
-                  Available for remote & onsite roles, Also long-term product engagements.
+                  Available for remote & onsite roles, Also long-term product
+                  engagements.
                 </div>
               </div>
             </div>
@@ -218,7 +235,9 @@ function ContactSection() {
                       placeholder="name@email.com"
                     />
                     {errors.email && (
-                      <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+                      <p className="mt-1 text-sm text-red-400">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -241,7 +260,9 @@ function ContactSection() {
                     placeholder="Tell me about your project..."
                   ></textarea>
                   {errors.message && (
-                    <p className="mt-1 text-sm text-red-400">{errors.message}</p>
+                    <p className="mt-1 text-sm text-red-400">
+                      {errors.message}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -257,6 +278,8 @@ function ContactSection() {
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
+                          role="img"
+                          aria-label="Sending message"
                         >
                           <circle
                             className="opacity-25"
@@ -286,7 +309,8 @@ function ContactSection() {
                 )}
                 {submissionStatus === "error" && (
                   <p className="mt-2 text-center text-sm text-red-400">
-                    {submissionMessage || "Failed to send message. Please check your details and try again."}
+                    {submissionMessage ||
+                      "Failed to send message. Please check your details and try again."}
                   </p>
                 )}
               </form>

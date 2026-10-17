@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 type Tab = {
   title: string;
   value: string;
-  content?: React.ReactNode | any;
+  content?: React.ReactNode;
 };
 
 export const Tabs = ({
@@ -41,12 +41,13 @@ export const Tabs = ({
       <div
         className={cn(
           "flex flex-row items-center justify-center [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-full",
-          containerClassName
+          containerClassName,
         )}
       >
         {propTabs.map((tab, idx) => (
           <button
             key={tab.title}
+            type="button"
             onClick={() => {
               moveSelectedTabToTop(idx);
             }}
@@ -63,7 +64,7 @@ export const Tabs = ({
                 transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
                 className={cn(
                   "absolute inset-0 bg-gray-200 dark:bg-zinc-800 rounded-full ",
-                  activeTabClassName
+                  activeTabClassName,
                 )}
               />
             )}
@@ -88,7 +89,7 @@ export const Tabs = ({
 export const FadeInDiv = ({
   className,
   tabs,
-  hovering,
+  hovering: _hovering,
 }: {
   className?: string;
   key?: string;
@@ -101,7 +102,7 @@ export const FadeInDiv = ({
   };
   return (
     <div className="relative w-full h-full">
-      {tabs.map((tab, idx) => (
+      {tabs.map((tab, _idx) => (
         <motion.div
           key={tab.value}
           layoutId={tab.value}

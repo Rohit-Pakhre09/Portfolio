@@ -13,12 +13,17 @@ export const TextGenerateEffect = ({
   const wordsArray = words.split(" ");
 
   const renderWords = () => {
+    const occurrences = new Map<string, number>();
+
     return (
       <motion.div>
         {wordsArray.map((word, idx) => {
+          const occurrence = occurrences.get(word) ?? 0;
+          occurrences.set(word, occurrence + 1);
+
           return (
             <motion.span
-              key={word + idx}
+              key={`${word}-${occurrence}`}
               className="text-inherit"
               initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
               animate={{ opacity: 1 }}

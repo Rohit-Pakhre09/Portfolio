@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
+import Header from "@/components/sections/Header";
 import CustomCursor from "@/components/ui/CustomCursor";
+import { siteUrl } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"] });
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-  "https://rohit-pakhre-portfolio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -27,7 +24,7 @@ export const metadata: Metadata = {
     "Rohit Pakhre portfolio",
     "Rohit Pakhre MERN",
     "Software Developer",
-    "MERN Stack Developer",
+    "MERN Stack Software Developer",
     "React Developer",
     "Node.js Developer",
     "MongoDB",
@@ -50,22 +47,14 @@ export const metadata: Metadata = {
       "Rohit Pakhre is a software developer specializing in the MERN stack — building modern, scalable web applications.",
     url: siteUrl,
     siteName: "Rohit Pakhre Portfolio",
-    images: [
-      {
-        url: "/favicon.png",
-        type: "image/png",
-        width: 1200,
-        height: 630,
-        alt: "Rohit Pakhre portfolio preview image",
-      },
-    ],
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Rohit Pakhre | Software Developer",
     description:
       "Rohit Pakhre is a software developer specializing in the MERN stack — building modern, scalable web applications.",
-    images: ["/favicon.png"],
+    images: ["/opengraph-image"],
   },
   verification: {
     google: "753c5592b76e888d",

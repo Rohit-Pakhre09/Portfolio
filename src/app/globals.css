@@ -39,6 +39,7 @@ body {
 @media (pointer: fine) {
   body.custom-cursor-enabled,
   body.custom-cursor-enabled * {
+    /* biome-ignore lint/complexity/noImportantStyles: required to override all cursor styles */
     cursor: none !important;
   }
 }

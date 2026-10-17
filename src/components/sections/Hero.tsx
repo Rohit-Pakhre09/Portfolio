@@ -1,11 +1,10 @@
 "use client";
-import { Link } from "react-scroll";
-import React from "react";
-import { Spotlight } from "../ui/Spotlight";
-import { Button } from "../ui/moving-border";
-import { TextGenerateEffect } from "../ui/text-generate-effect";
 import { FaGithub, FaLinkedin } from "react-icons/fa"; // Added for social links
+import { Link } from "react-scroll";
 import InteractiveParticles from "../ui/InteractiveParticles";
+import { Button } from "../ui/moving-border";
+import { Spotlight } from "../ui/Spotlight";
+import { TextGenerateEffect } from "../ui/text-generate-effect";
 
 function HeroSection() {
   return (
@@ -32,7 +31,8 @@ function HeroSection() {
           className="bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-lg font-bold text-transparent md:text-3xl lg:text-4xl" // Adjusted sizes
         />
         <p className="mx-auto mt-4 max-w-lg text-sm font-normal text-neutral-300 md:text-lg">
-          I craft robust and scalable web applications from front to back, focusing on user experience and clean code.
+          I craft robust and scalable web applications from front to back,
+          focusing on user experience and clean code.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link to="projects" smooth={true} duration={500}>
@@ -44,10 +44,20 @@ function HeroSection() {
             </Button>
           </Link>
           <div className="flex gap-3 sm:gap-4">
-            <a href="https://github.com/rohit-pakhre09" target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-gray-400">
+            <a
+              href="https://github.com/rohit-pakhre09"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white transition-colors hover:text-gray-400"
+            >
               <FaGithub className="h-6 w-6 sm:h-7 sm:w-7" />
             </a>
-            <a href="https://linkedin.com/in/rohit-pakhre" target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-gray-400">
+            <a
+              href="https://linkedin.com/in/rohit-pakhre"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white transition-colors hover:text-gray-400"
+            >
               <FaLinkedin className="h-6 w-6 sm:h-7 sm:w-7" />
             </a>
             {/* Potentially add a resume download button here */}

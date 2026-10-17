@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
 import { motion } from "framer-motion";
+import type React from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const PinContainer = ({
@@ -17,7 +18,7 @@ export const PinContainer = ({
   containerClassName?: string;
 }) => {
   const [transform, setTransform] = useState(
-    "translate(-50%,-50%) rotateX(0deg) scale(1)"
+    "translate(-50%,-50%) rotateX(0deg) scale(1)",
   );
   const [isHovered, setIsHovered] = useState(false);
   const [labelShift, setLabelShift] = useState(0);
@@ -47,38 +48,44 @@ export const PinContainer = ({
   };
 
   return (
-    <div
-      className={cn(
-        "relative group/pin z-50  cursor-pointer",
-        containerClassName
-      )}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onMouseMove={onMouseMove}
-    >
+    <>
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: mouse tracking for 3D effect is decoration */}
       <div
-        style={{
-          perspective: "1000px",
-          transform: "rotateX(62deg) translateZ(0deg)",
-        }}
-        className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
+        className={cn(
+          "relative group/pin z-50 cursor-pointer",
+          containerClassName,
+        )}
+        role="presentation"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onMouseMove={onMouseMove}
       >
         <div
           style={{
-            transform: transform,
+            perspective: "1000px",
+            transform: "rotateX(62deg) translateZ(0deg)",
           }}
-          className={cn(
-            "absolute left-1/2 top-1/2 flex items-start justify-start overflow-hidden rounded-2xl border bg-black p-4 transition duration-300",
-            isHovered
-              ? "border-emerald-300/35 shadow-[0_14px_30px_rgb(16_185_129/0.14)]"
-              : "border-white/10 shadow-[0_8px_16px_rgb(0_0_0/0.4)]",
-          )}
+          className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
         >
-          <div className={cn(" relative z-50 ", className)}>{children}</div>
+          <div
+            style={{
+              transform: transform,
+            }}
+            className={cn(
+              "absolute left-1/2 top-1/2 flex items-start justify-start overflow-hidden rounded-2xl border bg-black p-4 transition duration-300",
+              isHovered
+                ? "border-emerald-300/35 shadow-[0_14px_30px_rgb(16_185_129/0.14)]"
+                : "border-white/10 shadow-[0_8px_16px_rgb(0_0_0/0.4)]",
+            )}
+          >
+            <div className={cn("relative z-50", className)}>{children}</div>
+          </div>
         </div>
+        {isHovered && (
+          <PinPerspective title={title} href={href} labelShift={labelShift} />
+        )}
       </div>
-      {isHovered && <PinPerspective title={title} href={href} labelShift={labelShift} />}
-    </div>
+    </>
   );
 };
 
@@ -122,6 +129,7 @@ export const PinPerspective = ({
           }}
           className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
         >
+          {/* biome-ignore lint/complexity/noUselessFragments: wraps multiple siblings */}
           <>
             <motion.div
               initial={{
@@ -183,6 +191,7 @@ export const PinPerspective = ({
           </>
         </div>
 
+        {/* biome-ignore lint/complexity/noUselessFragments: wraps multiple siblings */}
         <>
           <motion.div
             animate={{ height: [64, 92, 76], opacity: [0.45, 0.9, 0.55] }}

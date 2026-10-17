@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 type Sparkle = {
@@ -14,7 +14,7 @@ type Sparkle = {
 };
 
 const Sparkles = ({
-  id,
+  id: _id,
   className,
 }: {
   id?: string;
@@ -45,7 +45,12 @@ const Sparkles = ({
   }, []);
 
   return (
-    <div className={cn("absolute inset-0 h-full w-full overflow-hidden", className)}>
+    <div
+      className={cn(
+        "absolute inset-0 h-full w-full overflow-hidden",
+        className,
+      )}
+    >
       <AnimatePresence>
         {sparkles.map((sparkle) => (
           <motion.div

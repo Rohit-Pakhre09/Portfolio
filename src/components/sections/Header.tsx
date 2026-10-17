@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
-import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Link } from "react-scroll";
 import { cn } from "@/lib/utils";
 import Navbar from "./Navbar";
 
@@ -16,7 +15,7 @@ function Header() {
       transition={{ duration: 0.5 }}
       className={cn(
         "fixed inset-x-0 top-0 z-50",
-        "border-b border-white/10 bg-black/40 backdrop-blur-xl"
+        "border-b border-white/10 bg-black/40 backdrop-blur-xl",
       )}
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-3 sm:h-16 sm:px-6 lg:px-8">
